@@ -1,12 +1,11 @@
 ﻿using Api.Interfaces;
 
-namespace Api.Services
+namespace Api.Services;
+
+public class DummyService : IDummyService
 {
-    public class DummyService : IDummyService
+    public int ReturnInt()
     {
-        public int ReturnInt()
-        {
-            return 5;
-        }
+        return 5;
     }
 }

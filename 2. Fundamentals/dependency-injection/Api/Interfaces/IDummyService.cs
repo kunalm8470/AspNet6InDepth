@@ -1,7 +1,6 @@
-﻿namespace Api.Interfaces
+﻿namespace Api.Interfaces;
+
+public interface IDummyService
 {
-    public interface IDummyService
-    {
-        void PrintOperationId();
-    }
+    void PrintOperationId();
 }

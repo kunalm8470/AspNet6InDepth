@@ -1,54 +1,56 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Api.Constants;
+using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 
-namespace Api.Middlewares
+namespace Api.Middlewares;
+
+public class UnhandledExceptionMiddleware
 {
-    public class UnhandledExceptionMiddleware
+    private readonly RequestDelegate _next;
+
+    public UnhandledExceptionMiddleware(RequestDelegate next)
     {
-        private readonly RequestDelegate _next;
+        _next = next;
+    }
 
-        public UnhandledExceptionMiddleware(RequestDelegate next)
+    public async Task Invoke(HttpContext context, IWebHostEnvironment hostingEnvironment)
+    {
+        try
         {
-            _next = next;
+            await _next(context);
         }
-
-        public async Task Invoke(HttpContext context, IWebHostEnvironment hostingEnvironment)
+        catch(Exception ex)
         {
-            try
+            string exceptionType = ex.GetType().ToString();
+
+            ProblemDetails details;
+
+            /*
+             *  Inspect ASPNETCORE_ENVIRONMENT environment variable
+             *  looking at its value it will decide which environment it is
+            */
+            if (hostingEnvironment.IsDevelopment())
             {
-                await _next(context);
+                details = new ProblemDetails
+                {
+                    Type = exceptionType,
+                    Detail = ex.Message,
+                    Status = StatusCodes.Status500InternalServerError
+                };
             }
-            catch(Exception ex)
+            else
             {
-                ProblemDetails details;
-
-                /*
-                 *  Inspect ASPNETCORE_ENVIRONMENT environment variable
-                 *  looking at its value it will decide which environment it is
-                */
-                if (hostingEnvironment.IsDevelopment())
+                details = new ProblemDetails
                 {
-                    details = new ProblemDetails
-                    {
-                        Type = ex.GetType().ToString(),
-                        Detail = ex.Message,
-                        Status = 500
-                    };
-                }
-                else
-                {
-                    details = new ProblemDetails
-                    {
-                        Type = ex.GetType().ToString(),
-                        Detail = "An error has occured",
-                        Status = 500
-                    };
-                }
-
-                context.Response.StatusCode = 500;
-
-                await context.Response.WriteAsync(JsonSerializer.Serialize(details));
+                    Type = exceptionType,
+                    Detail = ErrorConstants.GenericErrorMessage,
+                    Status = StatusCodes.Status500InternalServerError
+                };
             }
+
+            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+
+            await context.Response.WriteAsync(JsonSerializer.Serialize(details));
         }
     }
 }

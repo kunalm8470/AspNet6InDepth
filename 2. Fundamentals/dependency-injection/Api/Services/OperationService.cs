@@ -1,33 +1,32 @@
 ﻿using Api.Interfaces;
 
-namespace Api.Services
+namespace Api.Services;
+
+public class OperationService : IOperation, ISingletonOperation, IScopedOperation, ITransitiveOperation
 {
-    public class OperationService : IOperation, ISingletonOperation, IScopedOperation, ITransitiveOperation
+    private Guid _operationId;
+
+    public OperationService(Guid operationId) 
     {
-        private Guid _operationId;
+        _operationId = operationId;
+        // 2.
+    }
 
-        public OperationService(Guid operationId) 
+    public OperationService() : this(Guid.NewGuid())
+    {
+        // 1.
+    }
+
+    public Guid OperationId
+    {
+        get
         {
-            _operationId = operationId;
-            // 2.
+            // 3.
+            return _operationId;
         }
-
-        public OperationService() : this(Guid.NewGuid())
+        set
         {
-            // 1.
-        }
-
-        public Guid OperationId
-        {
-            get
-            {
-                // 3.
-                return _operationId;
-            }
-            set
-            {
-                 _operationId = value;
-            }
+             _operationId = value;
         }
     }
 }

@@ -4,7 +4,7 @@
 using Api.Interfaces;
 using Api.Services;
 
-WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 

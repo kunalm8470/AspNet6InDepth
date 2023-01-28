@@ -1,48 +1,48 @@
-﻿namespace Api.Middlewares
+﻿using Api.Constants;
+
+namespace Api.Middlewares;
+
+public class CorrelationIdMiddleware
 {
-    public class CorrelationIdMiddleware
+    private readonly RequestDelegate _next;
+
+    public CorrelationIdMiddleware(RequestDelegate next)
     {
-        private readonly RequestDelegate _next;
+        _next = next;
+    }
 
-        private const string CORELATIONID_HEADER = "X-Correlation-Id";
+    public async Task Invoke(HttpContext context)
+    {
+        string correlationId = Guid.NewGuid().ToString();
 
-        public CorrelationIdMiddleware(RequestDelegate next)
+        /*
+            Check whether correlationid is present in request headers
+            or not
+
+            If its not present, add it in request header
+        */
+        if (
+            !context.Request.Headers.ContainsKey(CorrelationIdConstants.CORRELATIONID_HEADER)
+            && !context.Request.Headers.TryGetValue(CorrelationIdConstants.CORRELATIONID_HEADER, out _)
+        ) 
         {
-            _next = next;
+            context.Request.Headers.Add(CorrelationIdConstants.CORRELATIONID_HEADER, correlationId);
         }
 
-        public async Task Invoke(HttpContext context)
+        context.Response.OnStarting(() =>
         {
-            string correlationId = Guid.NewGuid().ToString();
+            context.Response.Headers.Add(CorrelationIdConstants.CORRELATIONID_HEADER, correlationId);
 
-            /*
-                Check whether correlationid is present in request headers
-                or not
+            return Task.CompletedTask;
+        });
 
-                If its not present, add it in request header
-            */
-            if (
-                !context.Request.Headers.ContainsKey(CORELATIONID_HEADER)
-                && !context.Request.Headers.TryGetValue(CORELATIONID_HEADER, out _)) 
-            {
-                context.Request.Headers.Add(CORELATIONID_HEADER, correlationId);
-            }
+        await _next.Invoke(context);
 
-            context.Response.OnStarting(() =>
-            {
-                context.Response.Headers.Add(CORELATIONID_HEADER, correlationId);
-
-                return Task.CompletedTask;
-            });
-
-            await _next.Invoke(context);
-
-            /*
-             * We cannot mutate the response after returning to the client
-             * 
-             * Because it will throw protocol violation
-            */
-            // context.Response.Headers.Add(CORELATIONID_HEADER, correlationId);
-        }
+        /*
+         * We cannot mutate the response after returning to the client
+         * 
+         * Because it will throw protocol violation
+        */
+        // context.Response.Headers.Add(CORELATIONID_HEADER, correlationId);
     }
 }
