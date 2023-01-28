@@ -35,11 +35,6 @@
         - Bind multiple routes to a controller using `Route` attribute
         - Pass parameters to action methods using Route parameters
         - Action verbs `HttpGetAttribute`, `HttpPostAttribute`, `HttpPutAttribute`, `HttpPatchAttribute` and `HttpDeleteAttribute`
-    - Handle responses using `IActionResult<T>` or `ActionResult<T>`
-    - Handle content negotiation using `Accept` header
-        - Send XML response if `Accept` header is set to `application/xml`
-        - Send JSON response if `Accept` header is set to `application/json`
-    - Handle `HTTP Patch` type requests
     - Model Binding
         - Model bind from the following sources
             - `FromQuery` :  Gets values from the query string
@@ -47,6 +42,11 @@
             - `FromForm` : Gets values from posted form fields
             - `FromBody` : Gets values from the request body
             - `FromHeader` : Gets values from HTTP headers
+    - Handle responses using `IActionResult<T>` or `ActionResult<T>`
+    - Handle content negotiation using `Accept` header
+        - Send XML response if `Accept` header is set to `application/xml`
+        - Send JSON response if `Accept` header is set to `application/json`
+    - Handle `HTTP Patch` type requests
     - Model validation using Data Annotation Attributes
         - `Compare` : Validate if two properties in a model match.
         - `EmailAddress` : Validate if a property has an email format.
@@ -56,6 +56,12 @@
         - `Required` : Validate if a field isn't null.
         - `StringLength` : Validate if a string property value doesn't exceed a specified length limit.
         - `Url` : Validate if a property has a URL format.
+    - HTTP Client
+        - Creating basic IHttpClientFactory using `IHttpClientFactory.CreateClient();`
+        - Named HttpClient
+        - Typed HttpClient
+        - Add DelegatingHandler to HTTP Clients for executing common logic
+        - Handle HTTP exceptions using Polly library
     - Logging
         - Understanding log levels
         - Log using `ILogger<T>` extension methods
