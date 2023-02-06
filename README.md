@@ -46,16 +46,20 @@
     - Handle content negotiation using `Accept` header
         - Send XML response if `Accept` header is set to `application/xml`
         - Send JSON response if `Accept` header is set to `application/json`
+    - Versioning in .NET6 API(s)
     - Handle `HTTP Patch` type requests
-    - Model validation using Data Annotation Attributes
-        - `Compare` : Validate if two properties in a model match.
-        - `EmailAddress` : Validate if a property has an email format.
-        - `Phone` : Validate if a property has a telephone number format.
-        - `Range` : Validate if a property value falls within a specified range.
-        - `RegularExpression` : Validate if a property value matches a specified regular expression.
-        - `Required` : Validate if a field isn't null.
-        - `StringLength` : Validate if a string property value doesn't exceed a specified length limit.
-        - `Url` : Validate if a property has a URL format.
+    - Model validation
+        - Using Data Annotation Attributes
+            - `Compare` : Validate if two properties in a model match.
+            - `EmailAddress` : Validate if a property has an email format.
+            - `Phone` : Validate if a property has a telephone number format.
+            - `Range` : Validate if a property value falls within a specified range.
+            - `RegularExpression` : Validate if a property value matches a specified regular expression.
+            - `Required` : Validate if a field isn't null.
+            - `StringLength` : Validate if a string property value doesn't exceed a specified length limit.
+            - `Url` : Validate if a property has a URL format.
+        - FluentValidation validation using Fluent methods
+    - Globalization and localization
     - HTTP Client
         - Creating basic IHttpClientFactory using `IHttpClientFactory.CreateClient();`
         - Named HttpClient
@@ -81,6 +85,9 @@
     - Hosted Services
         - Implement hosted services using `IHostedService` interface
         - Implement background services by overriding the `BackgroundService` class
+    - Mapping objects from one type to another using Automapper
+    - Mediator pattern
+        - Implement loosely coupled in memory services using MediatR library
 
 3. **Data Access in ASP.NET 6 API Application**
     - Data Access using Micro ORM Dapper and Postgres SQL
