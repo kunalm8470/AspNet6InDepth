@@ -59,13 +59,14 @@
             - `StringLength` : Validate if a string property value doesn't exceed a specified length limit.
             - `Url` : Validate if a property has a URL format.
         - FluentValidation validation using Fluent methods
-    - Globalization and localization
     - HTTP Client
         - Creating basic IHttpClientFactory using `IHttpClientFactory.CreateClient();`
         - Named HttpClient
         - Typed HttpClient
         - Add DelegatingHandler to HTTP Clients for executing common logic
         - Handle HTTP exceptions using Polly library
+    - Filters
+    - Globalization and localization
     - Logging
         - Understanding log levels
         - Log using `ILogger<T>` extension methods
@@ -91,20 +92,22 @@
 
 3. **Data Access in ASP.NET 6 API Application**
     - Data Access using Micro ORM Dapper and Postgres SQL
+        - Install Npgsql
         - Install Dapper Micro ORM
-        - Install DBeaver tool
+        - Install Azure Data Studio
         - Configure Azure Database for PostgreSQL
         - Expose CRUD API(s) using Dapper MicroORM exposing the following endpoints
-            - **Offset pagination** `/api/employees?page=1&limit=10`
-            - **Get single by id** `/api/employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
-            - **Create** `/api/employees`
-            - **Update** `/api/employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
-            - **Deleting** `/api/employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
-            - **Patching** `/api/employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
+            - **Offset pagination** `/api/Employees?page=1&limit=10`
+            - **Keyset pagination** `/api/Employees?searchAfter=2023-02-16T09:52:57.6046760Z&limit=10`
+            - **Get single by id** `/api/Employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
+            - **Create** `/api/Employees`
+            - **Patching** `/api/Employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
+            - **Update** `/api/Employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
+            - **Deleting** `/api/Employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
 
     - Data Access using EF Core 6 ORM and Postgres SQL
         - Install EF Core 6
-        - Install DBeaver tool
+        - Install Azure Data Studio
         - Configure Azure Database for PostgreSQL
         - Add `DbSet<T>` to model tables in database
         - Analyze `DbContext`
@@ -114,12 +117,13 @@
         - Add seed data
         - Add migrations using EF Core migration scripts and `idempotent` option
         - Expose CRUD API(s) using EF Core ORM exposing the following endpoints
-            - **Offset pagination** `/api/employees?page=1&limit=10`
-            - **Get single by id** `/api/employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
-            - **Create** `/api/employees`
-            - **Update** `/api/employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
-            - **Deleting** `/api/employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
-            - **Patching** `/api/employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
+            - **Offset pagination** `/api/Employees?page=1&limit=10`
+            - **Keyset pagination** `/api/Employees?searchAfter=2023-02-16T09:52:57.6046760Z&limit=10`
+            - **Get single by id** `/api/Employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
+            - **Create** `/api/Employees`
+            - **Patching** `/api/Employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
+            - **Update** `/api/Employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
+            - **Deleting** `/api/Employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
 
 4. **Response Caching in ASP.NET 6 API Application**
     - Add In Memory Caching using `IMemoryCache`
@@ -155,11 +159,8 @@
             - Auth Code flow
         - Create Application in Auth0
         - Set Redirects URLs in Auth0
-        - Call HTTP services to do following operations
-            - Signup User
-            - Reset password
-            - Fetch Management API token
         - Secure all API endpoints using Auth0
+        - Define permissions on the API and do policy authorization
 
 6. **Handling file uploads and file downloads**
     - File uploads
@@ -168,7 +169,7 @@
         - Store uploaded file in Azure Blob Storage Containers
     - File downloads
         - Stream CSV file to response
-        - Stream Excel (xlsx) file to response
+        - Stream Excel `.xlsx` file to response
 
 7. **Testing**
     - Unit Testing
@@ -211,11 +212,8 @@
     - Implement Mediator pattern using `MediatR` library
     - Add Authentication and Authorization using Auth0
     - Expose API(s) for the following operations applying DDD concepts having 3 entities (Users, Posts and Comments)
-        - Register a user
-        - User Login
-        - User Logout
         - Reset Password
-        - Check user profile
+        - Get user profile
         - Add a post
         - View all posts in general (Paginated)
         - View all posts made by a user (Paginated)
