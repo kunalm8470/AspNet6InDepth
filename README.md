@@ -66,7 +66,12 @@
         - Add DelegatingHandler to HTTP Clients for executing common logic
         - Handle HTTP exceptions using Polly library
     - Filters
+    - Compress response body
+        - Add response compression using `gzip` algorithm
     - Globalization and localization
+    - Rate Limiting
+        - Rate Limiting using `AspNetCoreRateLimit` nuget package with memory provider.
+        - Rate Limiting using `AspNetCoreRateLimit` and `AspNetCoreRateLimit.Redis` nuget package with Azure Cache for Redis provider.
     - Logging
         - Understanding log levels
         - Log using `ILogger<T>` extension methods
@@ -81,8 +86,6 @@
     - Swagger
         - Install Swashbuckle nuget for generating `swagger.json`
         - Add summary tags for metadata
-    - Compress response body
-        - Add response compression using `gzip` algorithm
     - Hosted Services
         - Implement hosted services using `IHostedService` interface
         - Implement background services by overriding the `BackgroundService` class
