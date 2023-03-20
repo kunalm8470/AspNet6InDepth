@@ -1,0 +1,15 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Warning", // Global log level (Applicable for all C# code)
+      "Microsoft.AspNetCore": "Warning",
+      "Api.Controllers": "Trace" // Give specific log level for specific namespaces
+    }
+  },
+  "ApplicationInsights": {
+    "ConnectionString": "InstrumentationKey=cf88a9e7-91e4-432d-bc18-5b05c31d830f;IngestionEndpoint=https://centralindia-0.in.applicationinsights.azure.com/;LiveEndpoint=https://centralindia.livediagnostics.monitor.azure.com/"
+  },
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\MSSQLLocalDB;Database=_CHANGE_ME;Trusted_Connection=True;MultipleActiveResultSets=true"
+  }
+}
