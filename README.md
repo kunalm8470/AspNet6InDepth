@@ -81,7 +81,6 @@
             - `logger.Warning` log warning level messages
             - `logger.Error` log error level messages
             - `logger.Critical` log critical level messages
-        - Log using `Serilog` library
         - Log using `Azure AppInsights` SDK
     - Hosted Services
         - Implement hosted services using `IHostedService` interface
@@ -155,7 +154,7 @@
             - Override the `HandleRequirementAsync` to make custom policy requirement
             - Register the custom requirement in `Program.cs`
 
-    - Case Study) Add JWT Authentication and Role Authorization using Auth0
+    - Case Study: Add JWT Authentication and Role Authorization using Auth0
         - Understand OAuth2
         - Understand OAuth2 terminologies
         - Understand OAuth flows
