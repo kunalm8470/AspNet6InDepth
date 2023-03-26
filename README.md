@@ -85,12 +85,23 @@
     - Hosted Services
         - Implement hosted services using `IHostedService` interface
         - Implement background services by overriding the `BackgroundService` class
-    - Swagger
-        - Install Swashbuckle nuget for generating `swagger.json`
-        - Add summary tags for metadata
-    - Mapping objects from one type to another using Automapper
+    - Mapping objects from one type to another using Automapper nuget package
     - Mediator pattern
-        - Implement loosely coupled in memory services using MediatR library
+        - Implement loosely coupled services using MediatR nuget package
+    - Swagger
+        - Install `Swashbuckle.AspNetCore` nuget for adding Swagger OpenAPI support
+        - Add API Info and description
+        - Add summary tags for API level metadata
+        - Add OperationIds to group API(s)
+        - Enrich Operation Metadata
+        - Enrich Response Metadata
+        - Enrich Parameter Metadata
+        - Enrich RequestBody Metadata
+        - Enrich Schema Metadata
+        - Add Tag Metadata
+        - Change swagger route prefix to serve `swagger.json` from root level
+        - Omit API(s) to be visible in Swagger
+        - Generate Multiple Swagger Documents
     - Health checks
 
 3. **Data Access in ASP.NET 6 API Application**
