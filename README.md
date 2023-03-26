@@ -22,7 +22,7 @@
             - Write inline middlewares using `app.Use`, `app.Map`, `app.MapWhen`, `app.UseWhen` and `app.Run`
         - Static files middleware `app.UseStaticFiles();`
         - CORS middleware `app.UseCors();`
-        - Add correlationid middleware
+        - Add Correlationid middleware
         - Add global unhandled exception middleware and return standard `ProblemDetails` response
     - Setup host
     - Configurations
@@ -83,15 +83,16 @@
             - `logger.Critical` log critical level messages
         - Log using `Serilog` library
         - Log using `Azure AppInsights` SDK
-    - Swagger
-        - Install Swashbuckle nuget for generating `swagger.json`
-        - Add summary tags for metadata
     - Hosted Services
         - Implement hosted services using `IHostedService` interface
         - Implement background services by overriding the `BackgroundService` class
+    - Swagger
+        - Install Swashbuckle nuget for generating `swagger.json`
+        - Add summary tags for metadata
     - Mapping objects from one type to another using Automapper
     - Mediator pattern
         - Implement loosely coupled in memory services using MediatR library
+    - Health checks
 
 3. **Data Access in ASP.NET 6 API Application**
     - Data Access using Micro ORM Dapper and Postgres SQL
@@ -100,13 +101,13 @@
         - Install Azure Data Studio
         - Configure Azure Database for PostgreSQL
         - Expose CRUD API(s) using Dapper MicroORM exposing the following endpoints
-            - **Offset pagination** `/api/Employees?page=1&limit=10`
-            - **Keyset pagination** `/api/Employees?searchAfter=2023-02-16T09:52:57.6046760Z&limit=10`
-            - **Get single by id** `/api/Employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
-            - **Create** `/api/Employees`
-            - **Patching** `/api/Employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
-            - **Update** `/api/Employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
-            - **Deleting** `/api/Employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
+            - **Offset pagination** `/api/Persons?page=1&limit=10`
+            - **Keyset pagination** `/api/Persons?searchAfter=b1333cad9d7c4a648823db8c9aa55646&limit=10`
+            - **Get single by id** `/api/Persons/b1333cad-9d7c-4a64-8823-db8c9aa55646`
+            - **Create** `/api/Persons`
+            - **Patching** `/api/Persons/b1333cad-9d7c-4a64-8823-db8c9aa55646`
+            - **Update** `/api/Persons/b1333cad-9d7c-4a64-8823-db8c9aa55646`
+            - **Deleting** `/api/Persons/b1333cad-9d7c-4a64-8823-db8c9aa55646`
 
     - Data Access using EF Core 6 ORM and Postgres SQL
         - Install EF Core 6
@@ -120,13 +121,13 @@
         - Add seed data
         - Add migrations using EF Core migration scripts and `idempotent` option
         - Expose CRUD API(s) using EF Core ORM exposing the following endpoints
-            - **Offset pagination** `/api/Employees?page=1&limit=10`
-            - **Keyset pagination** `/api/Employees?searchAfter=2023-02-16T09:52:57.6046760Z&limit=10`
-            - **Get single by id** `/api/Employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
-            - **Create** `/api/Employees`
-            - **Patching** `/api/Employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
-            - **Update** `/api/Employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
-            - **Deleting** `/api/Employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
+            - **Offset pagination** `/api/Persons?page=1&limit=10`
+            - **Keyset pagination** `/api/Persons?searchAfter=b1333cad9d7c4a648823db8c9aa55646&limit=10`
+            - **Get single by id** `/api/Persons/b1333cad-9d7c-4a64-8823-db8c9aa55646`
+            - **Create** `/api/Persons`
+            - **Patching** `/api/Persons/b1333cad-9d7c-4a64-8823-db8c9aa55646`
+            - **Update** `/api/Persons/b1333cad-9d7c-4a64-8823-db8c9aa55646`
+            - **Deleting** `/api/Persons/b1333cad-9d7c-4a64-8823-db8c9aa55646`
 
 4. **Response Caching in ASP.NET 6 API Application**
     - Add In Memory Caching using `IMemoryCache`
@@ -134,12 +135,13 @@
 
 5. **Security in ASP.NET 6 API Application**
     - Add Authentication
-        - Add Basic Authentication
-        - Add JWT Authentication (Custom)
-            - Understand `Claim`, `ClaimsIdentity` and `ClaimsPrincipal`
+        - Understand `Claim`, `ClaimsIdentity` and `ClaimsPrincipal`
+        - Implement Basic Authentication
+        - Implement Cookie Authentication
+        - Implement JWT Authentication (Custom)
             - Hash plain text passwords using BCrypt algorithm and `BCrypt.Net-Next` nuget
             - Generate JWTs using `System.IdentityModel.Tokens.Jwt`
-            - Add the following endpoints
+            - Add the following API(s)
                 - `/api/Users/Register` to register the user
                 - `/api/Users/Login` to login the user and generate the initial set of access token and refresh token
                 - `/api/Users/Token` to refresh the access token using the refresh token sent
@@ -147,8 +149,8 @@
                 - `/api/Users/Logout` to force logout and delete all persisted refresh tokens.
 
     - Add Authorization
-        - Add Role based Authorization
-        - Add Policy based Authorization
+        - Implement Role based Authorization
+        - Implement Policy based Authorization
             - Understand policy "requirements" and implement the `IAuthorizationRequirement` interface
             - Override the `HandleRequirementAsync` to make custom policy requirement
             - Register the custom requirement in `Program.cs`
@@ -203,26 +205,3 @@
 10. **Hosting ASP.NET 6 API application**
     - Host ASP.NET 6 API application using IIS and folder publish
     - Host ASP.NET 6 API application using Azure App Service and manual publish
-
-11. **Case Study - Making a DDD ASP.NET 6 MVC and API application**
-    - Understand Onion architecture
-    - Understading DDD concepts
-    - Apply request validation using `FluentValidation`
-    - Apply automatic mapping logic using `AutoMapper`
-    - Implement global exception handling
-    - Implement correlation id middlewares
-    - Implement health checks
-    - Implement Mediator pattern using `MediatR` library
-    - Add Authentication and Authorization using Auth0
-    - Expose API(s) for the following operations applying DDD concepts having 3 entities (Users, Posts and Comments)
-        - Reset Password
-        - Get user profile
-        - Add a post
-        - View all posts in general (Paginated)
-        - View all posts made by a user (Paginated)
-        - View a post
-        - Delete a post and its comments (Recursively)
-        - Add comments to a post
-        - View all comments of a post (Paginated)
-        - Delete a comment
-    - Implement simple ASP.NET 6 MVC application to consume above API(s)
