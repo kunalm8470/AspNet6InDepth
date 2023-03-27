@@ -1,0 +1,12 @@
+dotnet new sln
+mkdir src
+cd src
+dotnet new webapi -o Api --framework=net6.0
+dotnet new classlib -o Domain --framework=net6.0
+dotnet new classlib -o Infrastructure --framework=net6.0
+dotnet new classlib -o Application --framework=net6.0
+cd ..
+dotnet sln add .\src\Api
+dotnet sln add .\src\Domain
+dotnet sln add .\src\Infrastructure
+dotnet sln add .\src\Application
