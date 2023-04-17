@@ -1,0 +1,11 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "ConnectionStrings": {
+    "Default": "Server=net6ktdemodapper.postgres.database.azure.com;Database=people;Port=5432;User Id=kunal;Password=dapperkt2023@1704;Ssl Mode=Require;Trust Server Certificate=true;Include Error Detail=true"
+  }
+}
