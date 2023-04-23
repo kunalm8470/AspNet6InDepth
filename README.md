@@ -105,39 +105,36 @@
     - Health checks
 
 3. **Data Access in ASP.NET 6 API Application**
-    - Data Access using Micro ORM Dapper and Postgres SQL
+    - Data Access using Micro ORM Dapper and PostgreSQL
         - Install Npgsql
         - Install Dapper Micro ORM
         - Install Azure Data Studio
         - Configure Azure Database for PostgreSQL
         - Expose CRUD API(s) using Dapper MicroORM exposing the following endpoints
             - **Offset pagination** `/api/Persons?page=1&limit=10`
-            - **Keyset pagination** `/api/Persons?searchAfter=b1333cad9d7c4a648823db8c9aa55646&limit=10`
+            - **Keyset pagination** `/api/Persons?searchAfter=4499b79a-c710-45e4-ba87-083d22c4d6ad_2023-04-17T12:00:25&limit=10`
             - **Get single by id** `/api/Persons/b1333cad-9d7c-4a64-8823-db8c9aa55646`
             - **Create** `/api/Persons`
-            - **Patching** `/api/Persons/b1333cad-9d7c-4a64-8823-db8c9aa55646`
             - **Update** `/api/Persons/b1333cad-9d7c-4a64-8823-db8c9aa55646`
             - **Deleting** `/api/Persons/b1333cad-9d7c-4a64-8823-db8c9aa55646`
 
-    - Data Access using EF Core 6 ORM and Postgres SQL
+    - Data Access using EF Core 6 ORM and PostgreSQL
         - Install EF Core 6
         - Install Azure Data Studio
         - Configure Azure Database for PostgreSQL
         - Add `DbSet<T>` to model tables in database
         - Analyze `DbContext`
         - Make repository pattern with DbContext extension methods
-        - Add EF Core interceptors to add timestamp columns `created_at` and `updated_at`
         - Add configurations to add constraints to database tables
         - Add seed data
         - Add migrations using EF Core migration scripts and `idempotent` option
         - Expose CRUD API(s) using EF Core ORM exposing the following endpoints
-            - **Offset pagination** `/api/Persons?page=1&limit=10`
-            - **Keyset pagination** `/api/Persons?searchAfter=b1333cad9d7c4a648823db8c9aa55646&limit=10`
-            - **Get single by id** `/api/Persons/b1333cad-9d7c-4a64-8823-db8c9aa55646`
-            - **Create** `/api/Persons`
-            - **Patching** `/api/Persons/b1333cad-9d7c-4a64-8823-db8c9aa55646`
-            - **Update** `/api/Persons/b1333cad-9d7c-4a64-8823-db8c9aa55646`
-            - **Deleting** `/api/Persons/b1333cad-9d7c-4a64-8823-db8c9aa55646`
+            - **Offset pagination** `/api/Employees?page=1&limit=10`
+            - **Keyset pagination** `/api/Employees?searchAfter=4499b79a-c710-45e4-ba87-083d22c4d6ad_2023-04-17T12:00:25&limit=10`
+            - **Get single by id** `/api/Employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
+            - **Create** `/api/Employees`
+            - **Update** `/api/Employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
+            - **Deleting** `/api/Employees/b1333cad-9d7c-4a64-8823-db8c9aa55646`
 
 4. **Response Caching in ASP.NET 6 API Application**
     - Add In Memory Caching using `IMemoryCache`
