@@ -1,0 +1,15 @@
+--1. Uninstall any dotnet efcore CLI
+dotnet tool uninstall --global dotnet-ef
+
+--2. Install latest version dotnet efcore 6 CLI
+dotnet tool install --global dotnet-ef --version=6.0.16
+
+--3. Add Migrations
+dotnet ef migrations add InitialMigration -o "Data/Migrations"
+
+-- 4. Generate Idempotent Script
+dotnet ef migrations script `
+--project .\Api.csproj `
+--startup-project .\Api.csproj `
+--output .\database\output.sql `
+--idempotent
