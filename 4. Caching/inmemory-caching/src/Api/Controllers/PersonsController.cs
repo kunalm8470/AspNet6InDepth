@@ -39,7 +39,8 @@ public class PersonsController : ControllerBase
             await Task.Delay(2000);
 
             MemoryCacheEntryOptions cacheEntryOptions = new MemoryCacheEntryOptions()
-            .SetSlidingExpiration(TimeSpan.FromMinutes(5));
+            .SetSlidingExpiration(TimeSpan.FromMinutes(1)) // Cache will expire if inactive for 1 minute
+            .SetAbsoluteExpiration(TimeSpan.FromMinutes(5)); // Cache will expire in 5 minutes
 
             _memoryCache.Set("people", people, cacheEntryOptions);
         }
