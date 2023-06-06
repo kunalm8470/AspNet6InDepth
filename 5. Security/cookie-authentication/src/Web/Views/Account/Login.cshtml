@@ -1,0 +1,24 @@
+﻿<fieldset>
+    <legend>Please sign in</legend>
+
+    <form method="post" action="/Account/Login">
+        <label class="sr-only">
+            Email
+        </label>
+        <input type="text" name="email" class="form-control" placeholder="Email" />
+
+        <label class="sr-only">
+            Password
+        </label>
+        <input type="password" name="password" class="form-control" placeholder="Password" />
+
+        @{
+            string returnUrl = Context.Request.Query["ReturnUrl"].ToString() ?? "/";
+        }
+        
+        <input type="hidden" name="returnUrl" value=@returnUrl />
+
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+
+</fieldset>
