@@ -149,11 +149,10 @@
             - Hash plain text passwords using BCrypt algorithm and `BCrypt.Net-Next` nuget
             - Generate JWTs using `System.IdentityModel.Tokens.Jwt`
             - Add the following API(s)
-                - `/api/Users/Register` to register the user
-                - `/api/Users/Login` to login the user and generate the initial set of access token and refresh token
-                - `/api/Users/Token` to refresh the access token using the refresh token sent
-                - `/api/Users/Revoke` to revoke the refresh token
-                - `/api/Users/Logout` to force logout and delete all persisted refresh tokens.
+                - `/api/Account/Register` to register the user
+                - `/api/Account/Login` to login the user and generate the initial set of access token and refresh token
+                - `/api/Account/Token` to refresh the access token using the refresh token sent
+                - `/api/Account/Revoke` to revoke the refresh token
 
     - Add Authorization
         - Implement Role based Authorization
