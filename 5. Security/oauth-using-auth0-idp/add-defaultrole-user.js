@@ -110,18 +110,18 @@ async function fetchManagementApiToken() {
 
 async function assignNewUserToUserRole(userId, roleId, accessToken) {
 	try {
-			const config = {
-				method: 'post',
-				url: `https://dev-kunalm8470.us.auth0.com/api/v2/roles/${roleId}/users`,
-				headers: {
-					'Authorization': `Bearer ${accessToken}`
-				},
-				data: {
-					users: [
-						userId
-					]
-				}
-			};
+		const config = {
+			method: 'post',
+			url: `https://dev-kunalm8470.us.auth0.com/api/v2/roles/${roleId}/users`,
+			headers: {
+				'Authorization': `Bearer ${accessToken}`
+			},
+			data: {
+				users: [
+					userId
+				]
+			}
+		};
 
 		return await axios(config);
 	} catch (err) {
