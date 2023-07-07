@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = @ViewData["Error"];
+}
+
+<div class="content-layout">
+    <h1>@ViewData["Error"]</h1>
+    @if (ViewData.ContainsKey("Description"))
+    {
+        <div class="content__body">
+            <p id="page-description">
+                @ViewData["Description"]
+            </p>
+        </div>
+    }
+</div>

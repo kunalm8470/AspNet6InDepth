@@ -1,0 +1,6 @@
+To validate the access token -
+
+1. Resource server will hit the JWKS uri https://{{yourtenant}}.us.auth0.com/.well-known/jwks.json
+2. Match the KID (Key id) property
+3. Grab the x5c property from the matched object
+4. Add markers -----BEGIN CERTIFICATE----- and -----END CERTIFICATE-----

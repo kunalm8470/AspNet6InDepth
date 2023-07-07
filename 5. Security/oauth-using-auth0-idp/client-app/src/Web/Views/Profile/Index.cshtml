@@ -1,0 +1,23 @@
+﻿@model Web.Models.Profile
+
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<div class="container mt-3">
+    <h1>Profile</h1>
+    <p>
+        <span><strong>Only authenticated users can access this page.</strong></span>
+    </p>
+
+    <div class="card" style="width:400px">
+        <img src=@Model?.ProfileImageUrl alt="Profile" style="width:100%">
+
+        <div class="card-body">
+            <h4 class="card-title">Hello @Model?.Username!</h4>
+            <span>@Model?.Email</span>
+
+            <pre style="width:300px;height:300px;">@ViewData["serializedUserProfile"]</pre>
+        </div>
+    </div>
+</div>
