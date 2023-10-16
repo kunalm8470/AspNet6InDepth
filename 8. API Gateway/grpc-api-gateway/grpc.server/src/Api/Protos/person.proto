@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option csharp_namespace = "Api.Protos";
+
+import "google/protobuf/timestamp.proto";
+
+message PersonRequest {
+	string Name = 1;
+	int32 Age = 2;
+}
+
+message PersonResponse {
+	string Id = 1;
+	string Name = 2;
+	int32 Age = 3;
+	google.protobuf.Timestamp CreatedAt = 4;
+	google.protobuf.Timestamp UpdatedAt = 5;
+}
+
+message PersonPaginationRequest {
+	int32 Page = 1;
+	int32 Limit = 2;
+}
+
+service PersonService {
+	rpc AddPerson (PersonRequest) returns (PersonResponse);
+
+	rpc GetPersons (PersonPaginationRequest) returns (stream PersonResponse);
+}
